@@ -1,14 +1,20 @@
 <navbar></navbar>
 <div id="container">
+  <div class="col-lg-6 col-center text-center">  <div>{{err}}</div></div>
   <form id="form" name="form" method="get" class="search form-inline form-horizontal" ng-submit="submit()">
     <div class="col-lg-6 col-lg-offset-3 text-center">
-      <input type="text" id="Films" id="searchBar" class="form-control input" type="text" name="name" search ng-model="query" placeholder="Should I watch this?" style="width: 400px" />
+      <input type="text" id="Films" id="searchBar" class="form-control input" type="text" name="name" search ng-model="query" placeholder="Type in a TV show to get ratings" style="width: 400px" />
       <button id="submit" type="submit" class="btn btn-primary"><i class="fa fa-bar-chart-o"></i></button>
     </div>
+    
   </form>
+
   <div class="row">
+
     <div ng-hide="goCats" id="graphContainer" class='col-md-10 col-center'>
       <graph></graph>
+      <br>
+      <div ng-show="showShowInfo">Mouse over the graph for more details</div>
       <br>
       <button ng-show="showShowInfo" class='button' ng-click="goCats = !goCats"><span>Show Overall Rating by Seasons</span></button>
     </div>
@@ -29,22 +35,25 @@
     </div>
     <div class="col-md-8">
       <div>
-        <h1> {{showInfo.Title}}</h1> </div>
+     {{showInfo.Title}}</div>
         <br>
       <div>
-        <h4> Plot: {{showInfo.Plot}}</h4></div>
+         Plot: {{showInfo.Plot}}</div>
       <div>
-        <h4> Year: {{showInfo.Year}}</h4></div>
+         Year: {{showInfo.Year}}</div>
       <div>
-        <h4> Genre: {{showInfo.Genre}}</h4></div>
+         Genre: {{showInfo.Genre}}</div>
       <div>
-        <h4> Actors: {{showInfo.Actors}}</h4></div>
+         Actors: {{showInfo.Actors}}</div>
       <div>
-        <h4> Awards: {{showInfo.Awards}}</h4></div>
+         Awards: {{showInfo.Awards}}</div>
       <div>
-        <h4> IMDB Rating: {{showInfo.imdbRating}}</h4></div>
+         IMDB Rating: {{showInfo.imdbRating}}</div>
       <br>
-      <button class='button'><span>Add to Watchlist</span></button>
+       <div ng-hide="checkIfAdded(showInfo.Title)">
+          <button class="button" ng-click="list(showInfo)" >add to watchlist</button>
+        </div>
+  
     </div>
   </div>
 </div>

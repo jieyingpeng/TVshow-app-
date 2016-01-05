@@ -1,7 +1,7 @@
 'use strict';
 
-var width = 700,
-    height = 700,
+var width = 500,
+    height = 500,
     radius = Math.min(width, height) / 2,
     innerRadius = 0.3 * radius,
     padding = 25,
@@ -151,7 +151,7 @@ var drawPie = function() {
 		    .attr("x", width / 2)
 		    .attr("y", 12)
 		    .attr("text-anchor", "middle")
-		    .style("fill", "white")
+		    .style("fill", "rgba(88, 84, 142, 0.61)")
 		    .attr("font-size", "15px")
 		    .text("Overall Rating by Season(s)");
 
@@ -168,7 +168,7 @@ var drawPie = function() {
         .enter().append("path")
         .attr("fill", function(d) { return d.data[4]})
         .attr("class", "solidArc")
-        .attr("stroke", "white")
+        .attr("stroke", "rgba(44, 65, 167, 0.14)")
         .attr("d", arc) 
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide)
@@ -177,8 +177,9 @@ var drawPie = function() {
     var score = avgScore() || "Hello";
     if (score !== 'Hello') {
         svgPie.append("svg:text")
-        		.attr("fill", function(d) { return "white"})
+        		.attr("fill", function(d) { return "#B6839E"})
             .attr("class", "aster-score")
+               .attr("font-size", "20px")
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
             .text(score);

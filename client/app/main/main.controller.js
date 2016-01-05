@@ -2,14 +2,14 @@
 
 
 angular.module('tvshowAppApp')
-  .controller('MainController', ['$scope', '$http', function($scope, $http) {
+  .controller('MainController', ['$scope', 'Auth', '$state', '$http', '$timeout', '$modal', '$log', function($scope, Auth, $state, $http, $timeout, $modal, $log) {
     // * scope will have the query string as a variable
     $scope.query = '';
     $scope.queryId = [];
-
+    $scope.err = '';
     $scope.goCats = false;
     $scope.showInfo = '';
-     $scope.showShowInfo = false;
+    $scope.showShowInfo = false;
 
     // * show meta data as an object (reponse from AJAX call?)
     $scope.results = [];
@@ -18,17 +18,22 @@ angular.module('tvshowAppApp')
     $scope.pie;
     // * search function
     $scope.submit = function() {
-         $scope.showShowInfo = true;
       $scope.results = {};
       var season = 1;
       var seasonExists = true;
       var queryString = $scope.query;
       $scope.query = '';
-
-
+      $scope.err = '';
       $http.get('http://www.omdbapi.com/?t=' + queryString)
         .success(function(data) {
           $scope.showInfo = data;
+          $scope.showShowInfo = true;
+          if (data.Response === 'False') {
+            $scope.showShowInfo = false;
+            $scope.err = "Show is not found. Please try again. ";
+          }
+          $scope.getMyList();
+
         })
         .catch(function(err) {
           console.log('Error: ' + err);
@@ -61,7 +66,7 @@ angular.module('tvshowAppApp')
           },
           url: 'http://www.omdbapi.com/?',
         }).then(function(res) {
-          console.log(res.data, 'this is the response');
+          // console.log(res.data, 'this is the response');
           if (res.data.Response === 'True') {
             var color = generateRandomColor();
             $scope.results = [res.data, convertHex(color, 75)];
@@ -78,5 +83,90 @@ angular.module('tvshowAppApp')
       };
       getAllSeasons(season);
     };
+
+
+
+
+    //********************add to watchlist************************
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.getCurrentUser = Auth.getCurrentUser;
+
+
+
+    $scope.list = function(show) {
+      show.user_id = $scope.getCurrentUser()._id;
+      if (Auth.isLoggedIn() === true) {
+        $http.post('/api/shows', show)
+          .success(function(data) {
+            $scope.getMyList();
+
+          })
+          .error(function(data) {
+
+            console.log('Error: ' + data);
+          });
+
+      } else {
+        $state.go('login');
+      }
+    };
+
+    $scope.myWatchList = '';
+
+
+    $scope.getMyList = function() {
+
+      if (Auth.isLoggedIn() === true) {
+        $http.get('/api/users/me/shows')
+          .success(function(data) {
+            $scope.myWatchList = data
+          })
+          .error(function(data) {
+            console.log('Error: ' + data);
+          });
+      } else {
+        console.log('')
+      }
+
+    };
+
+
+    $scope.checkIfAdded = function(title) {
+
+      var answer = false;
+      _.forEach($scope.myWatchList, function(item) {
+        if (_.contains(item, title)) {
+          answer = true;
+        }
+      })
+      return answer;
+
+    };
+
+
+    //********************delete from watchlist************************
+    $scope.delete = function(title) {
+      var show = _.find($scope.myWatchList, {
+        'Title': title
+      });
+
+      var r = confirm("Are you sure to delete??");
+      if (r == true) {
+        $http.delete('/api/shows/' + show._id)
+          .success(function(data) {
+            $scope.getMyList();
+          })
+          .error(function(data) {
+
+            console.log('Error: ' + data);
+          });
+      } else {
+        console.log('')
+      }
+    }
+
+
+
+
 
   }]);

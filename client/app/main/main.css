@@ -1,33 +1,41 @@
 .button {
-    border: 3px solid white;
-    background: transparent;
+    border: 0px solid;
+    /*background: rgba(232, 211, 224, 0.62);*/
+    background-color: rgba(44, 65, 167, 0.14);
     overflow: hidden;
     width: 100%;
     outline: none;
+    /*color: #B37A9E;*/
+    color: #B6839E;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-#pie{
-    padding-top: 50px;
-      padding-left:120px;
+.navbar-default {
+    background-color: rgba(44, 65, 167, 0.14);
+    border-color: #B6839E;
 }
 
-#graph{
+#pie {
+    padding-top: 40px;
+    padding-left: 240px;
+}
+
+#graph {
     padding-top: 40px;
 }
 
-
 #episodeInfo {
-    color: black;
+    color: rgba(88, 84, 142, 0.61);
+    font-size: 15px;
     margin-top: 20px;
- margin-right: 90px;
- margin-left: 100px;
+    margin-right: 90px;
+    margin-left: 100px;
 }
 
-
 .button span {
-    font-weight: 700;
+/*    font-weight: 700;
     font-size: 1.5em;
-font-style: Arial;
+    font-style: Arial;*/
     display: block;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -38,6 +46,9 @@ font-style: Arial;
     padding: 20px;
 }
 
+.col-md-8{
+    padding-top: 50px;
+}
 .thing-form {
     margin: 20px 0;
 }
@@ -75,11 +86,12 @@ font-style: Arial;
 .searchres {
     background-color: white;
     width: 25%;
+    cursor: pointer;
 }
 
 body {
-    color: white;
-    background-color: #111;
+    color: black;
+    background-color: white;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -107,7 +119,7 @@ body {
 div {
     marin: 20px auto 0;
     colo: #aaa;
-    font-weight: 100;
+    font-weight: 140;
 }
 
 svg {

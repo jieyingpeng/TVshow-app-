@@ -126,6 +126,11 @@ exports.me = function(req, res, next) {
     });
 };
 
+exports.meParams = function(req, res, next) {
+  req.user_id = req.user._id;
+  next();
+};
+
 /**
  * Authentication callback
  */

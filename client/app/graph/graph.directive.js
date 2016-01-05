@@ -211,7 +211,8 @@ return "<strong>Title:</strong> <span style='color:" + d[4] + "'>" + d[0] + "</s
     .attr("x", w / 2)
     .attr("y", 14)
     .attr("text-anchor", "middle")
-    .style("fill", "white")
+      .attr("font-size", "15px")
+    .style("fill", "rgba(88, 84, 142, 0.61)")
     .text(showName);
 
 svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', tip.hide);
@@ -274,7 +275,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
       .attr("y2", function(d) {
         return yScale(d[3]);
       })
-      .style("stroke", "white")
+      .style("stroke", "rgba(22, 82, 173, 0.59)")
       .style("stroke-width", 2)   
     //ShouldI function
     var avg = y1 / len;
@@ -285,7 +286,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("You're Missing Out!");
       } else if(slope > 0){
@@ -294,7 +295,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w/2)             
           .attr("y", 350)
           .attr("text-anchor", "middle") 
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Yes!");
         }else if (slope < 0 && slope > -0.03) {
@@ -303,7 +304,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Sure");
       } else if (slope < 0 && slope > -0.04) {
@@ -312,7 +313,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Meh.");
       } else {
@@ -321,7 +322,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Eeeeh...");
       }
@@ -332,7 +333,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Go For It!");
       } else if (slope > 0.03) {
@@ -341,7 +342,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Yup");
       } else if (slope > 0) {
@@ -350,7 +351,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("Eeeeh...");
       } else if (slope < 0 && slope > -0.04) {
@@ -359,7 +360,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("No.");
       } else {
@@ -368,7 +369,7 @@ svg.selectAll('circle').data(infoset).on('mouseover', tip.show).on('mouseout', t
           .attr("x", w / 2)
           .attr("y", 350)
           .attr("text-anchor", "middle")
-          .style("fill", "#89ba2c")
+          .style("fill", "rgb(197, 150, 193)")
           .attr("font-size", "34px")
           .text("HAHAHA...Oh You were Serious...");
       }        

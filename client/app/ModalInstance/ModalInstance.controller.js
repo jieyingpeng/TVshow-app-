@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('tvshowAppApp')
-  .controller('ModalInstanceCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+  .controller('ModalInstanceCtrl',['$scope', '$modalInstance', 'show', function ($scope, $modalInstance, show) {
+    $scope.show = show;
+  }]);

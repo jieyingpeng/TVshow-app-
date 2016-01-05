@@ -92,9 +92,19 @@ function removeEntity(res) {
 
 // Gets a list of Shows
 exports.index = function(req, res) {
-  Show.findAsync()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+  if (req.baseUrl === '/api/users/me/shows') {
+    Show.find({
+        user_id: req.user_id
+      })
+      .execAsync()
+      .then(responseWithResult(res))
+      .catch(handleError(res));
+  } else {
+    Show.findAsync()
+      .then(responseWithResult(res))
+      .catch(handleError(res));
+
+  }
 };
 
 // Gets a single Show from the DB
