@@ -24,7 +24,7 @@ angular.module('tvshowAppApp')
       var queryString = $scope.query;
       $scope.query = '';
       $scope.err = '';
-      $http.get('http://www.omdbapi.com/?t=' + queryString)
+      $http.get('https://www.omdbapi.com/?t=' + queryString)
         .success(function(data) {
           $scope.showInfo = data;
           $scope.showShowInfo = true;
@@ -64,7 +64,7 @@ angular.module('tvshowAppApp')
             type: 'series',
             season: seasonNumber
           },
-          url: 'http://www.omdbapi.com/?',
+          url: 'https://www.omdbapi.com/?',
         }).then(function(res) {
           // console.log(res.data, 'this is the response');
           if (res.data.Response === 'True') {
